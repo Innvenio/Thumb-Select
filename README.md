@@ -39,15 +39,15 @@ Your script:
 <br/>
 ```javascript
 $(document).ready(function () {
-//Create ThumbSelect
-$('#select').ThumbSelect();
+	//Create ThumbSelect
+	$('#select').ThumbSelect();
 
-//Event change item
-$('#select').ThumbSelect('change', function (value) {
-$('.selected').html("Item selected: " +  value);
-});
+	//Event change item
+	$('#select').ThumbSelect('change', function (value) {
+		$('.selected').html("Item selected: " +  value);
+	});
 
-//Get value
-//var value = $('#select').ThumbSelect('value');
+	//Get value
+	//var value = $('#select').ThumbSelect('value');
 });
 ```
