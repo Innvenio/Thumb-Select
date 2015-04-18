@@ -21,12 +21,14 @@ Your HTML:
 	<script type="text/javascript" src="js/ThumbSelect.js"></script>
 </head>
 <body>
+	<!-- YOUR TRADITIONAL SELECT -->
 	<select id="select">
 		<option value="Linux">Linux</option>
 		<option value="OSX">OSX</option>
 		<option value="Windows">Windows</option>
 		<option value="Other">Other</option>
 	</select>
+	<!-- YOUR TRADITIONAL SELECT -->
 	<br/><br/>
 	<div class="selected"></div>
 	<script type="text/javascript" src="js/script.js"></script>
