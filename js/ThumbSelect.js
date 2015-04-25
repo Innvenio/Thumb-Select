@@ -1,6 +1,7 @@
 (function($) {
     var select;
     var callback_change = null;
+    var multiple = false;
 
     var methods = {
         init : function(options){
@@ -28,15 +29,43 @@
                 select.html(appends);
                 $('.ThumbSelect_item').click(function(){
                     var item = $(this);
-                    $('.ThumbSelect_item').attr('data-selected', 'false');
-                    $('.ThumbSelect_item').removeClass('ThumbSelect_active');
-                    $('.ThumbSelect_item').addClass('ThumbSelect_inactive');
-                    if (item.attr('data-selected') == 'false'){
-                        item.attr('data-selected', 'true');
-                        item.removeClass('ThumbSelect_inactive');
-                        item.addClass('ThumbSelect_active');
+                    if (!multiple){
+                        $('.ThumbSelect_item').attr('data-selected', 'false');
+                        $('.ThumbSelect_item').removeClass('ThumbSelect_active');
+                        $('.ThumbSelect_item').addClass('ThumbSelect_inactive');
+                        if (item.attr('data-selected') == 'false'){
+                            item.attr('data-selected', 'true');
+                            item.removeClass('ThumbSelect_inactive');
+                            item.addClass('ThumbSelect_active');
+                            if (callback_change){
+                                callback_change(item.attr('data-value'));    
+                            }
+                        }
+                    } else {
+                        $('.ThumbSelect_item').each(function(){
+                            if ($(this).attr('data-selected') == 'false'){
+                                $(this).addClass('ThumbSelect_inactive');
+                            }
+                        });
+
+                        if (item.attr('data-selected') == 'false'){
+                            item.attr('data-selected', 'true');
+                            item.removeClass('ThumbSelect_inactive');
+                            item.addClass('ThumbSelect_active');
+                        } else {
+                            item.attr('data-selected', 'false');
+                            item.removeClass('ThumbSelect_active');
+                            item.addClass('ThumbSelect_inactive');
+                        }
+
                         if (callback_change){
-                            callback_change(item.attr('data-value'));    
+                            var list = new Array();
+                            $('.ThumbSelect_item').each(function(){
+                                if ($(this).attr('data-selected') == 'true'){
+                                    list.push($(this).attr('data-value'));
+                                }
+                            });
+                            callback_change(list);
                         }
                     }
                 });
@@ -48,9 +77,8 @@
         value : function(){  
             return select.find('[data-selected="true"]').attr('data-value');
         }, 
-        change : function(){
-
-        }
+        change : function(){},
+        multiple : function(){}
     };
 
     $.fn.ThumbSelect = function(methodOrOptions, callback) {
@@ -59,7 +87,12 @@
             if (methodOrOptions == 'change'){
                 callback_change = callback;
             }
-            return methods[ methodOrOptions ].apply(this, Array.prototype.slice.call( arguments, 1 ));
+
+            if (methodOrOptions == 'multiple'){
+                multiple = callback;
+            }
+
+            return methods[methodOrOptions].apply(this, Array.prototype.slice.call( arguments, 1 ));
         } else if ( typeof methodOrOptions === 'object' || ! methodOrOptions ) {
             return methods.init.apply(this, arguments);            
         } else {

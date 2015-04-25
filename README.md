@@ -44,6 +44,9 @@ $(document).ready(function () {
 	//Create ThumbSelect
 	$('#select').ThumbSelect();
 
+	//Select multiple items
+    //$('#select').ThumbSelect('multiple', true);
+
 	//Event change item
 	$('#select').ThumbSelect('change', function (value) {
 		$('.selected').html("Item selected: " +  value);
