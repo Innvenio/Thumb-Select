@@ -2,6 +2,7 @@
     var select;
     var callback_change = null;
     var multiple = false;
+    var select = false;
 
     var methods = {
         init : function(options){
@@ -78,18 +79,33 @@
             return select.find('[data-selected="true"]').attr('data-value');
         }, 
         change : function(){},
-        multiple : function(){}
+        multiple : function(){},
+        select : function(){
+            if (select && Array.isArray(select) && select.length > 0){
+                $('.ThumbSelect_item').removeClass('ThumbSelect_active');
+                $('.ThumbSelect_item').addClass('ThumbSelect_inactive');
+                for (var i = 0; i < select.length; i++){
+                    $('.ThumbSelect_item').each(function(){
+                        if ($(this).attr('data-value') == select[i]){
+                            $(this).attr('data-selected', 'true');
+                            $(this).removeClass('ThumbSelect_inactive');
+                            $(this).addClass('ThumbSelect_active');
+                        }
+                    });    
+                }
+            }
+        }
     };
 
-    $.fn.ThumbSelect = function(methodOrOptions, callback) {
+    $.fn.ThumbSelect = function(methodOrOptions, option) {
         select = $(this);
         if (methods[methodOrOptions]) {
             if (methodOrOptions == 'change'){
-                callback_change = callback;
-            }
-
-            if (methodOrOptions == 'multiple'){
-                multiple = callback;
+                callback_change = option;
+            } else if (methodOrOptions == 'multiple'){
+                multiple = option;
+            } else if (methodOrOptions == 'select'){
+                select = option;
             }
 
             return methods[methodOrOptions].apply(this, Array.prototype.slice.call( arguments, 1 ));
