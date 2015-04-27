@@ -97,9 +97,9 @@
             if (selects[id].selected && Array.isArray(selects[id].selected) && selects[id].selected.length > 0){
                 selects[id].tag.find('.ThumbSelect_item').removeClass('ThumbSelect_active');
                 selects[id].tag.find('.ThumbSelect_item').addClass('ThumbSelect_inactive');
-                for (var i = 0; i < selected.length; i++){
+                for (var i = 0; i < selects[id].selected.length; i++){
                     selects[id].tag.find('.ThumbSelect_item').each(function(){
-                        if ($(this).attr('data-value') == selected[i]){
+                        if ($(this).attr('data-value') == selects[id].selected[i]){
                             $(this).attr('data-selected', 'true');
                             $(this).removeClass('ThumbSelect_inactive');
                             $(this).addClass('ThumbSelect_active');
