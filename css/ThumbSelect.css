@@ -1,14 +1,19 @@
 .ThumbSelect_item
 {
+	font-family: "Arial";
+	color: #333;
 	margin: 5px;
 	display: inline-block;
-	padding: 10px 20px 10px 20px;
+	padding: 10px 30px 10px 30px;
 	border: 1px #CCC solid;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
 	background-color: #EEE;
 	cursor: pointer;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow:    1px 1px 1px 0px rgba(0, 0, 0, 0.5);
+	box-shadow:         1px 1px 1px 0px rgba(0, 0, 0, 0.5);
 }
 
 .ThumbSelect_item:hover
@@ -19,7 +24,7 @@
 
 .ThumbSelect_active
 {
-	background-color: #CCC;	
+	
 }
 
 .ThumbSelect_inactive
@@ -27,4 +32,7 @@
 	background-color: #FFF;	
 	color: #CCC;
 	border: 1px #DDD solid;
+	-webkit-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0);
+	-moz-box-shadow:    1px 1px 1px 0px rgba(0, 0, 0, 0);
+	box-shadow:         1px 1px 1px 0px rgba(0, 0, 0, 0);
 }
